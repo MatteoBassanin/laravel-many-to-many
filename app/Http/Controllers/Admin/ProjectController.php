@@ -24,8 +24,7 @@ class ProjectController extends Controller
     public function index()
     {
         $projects = Project::all();
-        $tecnologies = Tecnology::all();
-        return view('admin.projects.index', compact('projects', 'tecnologies'));
+        return view('admin.projects.index', compact('projects'));
 
     }
 
@@ -37,7 +36,8 @@ class ProjectController extends Controller
     public function create()
     {
         $types = Type::all();
-        return view('admin.projects.create', compact('types'));
+        $tecnologies = Tecnology::all();
+        return view('admin.projects.create', compact('types', 'tecnologies'));
     }
 
     /**
