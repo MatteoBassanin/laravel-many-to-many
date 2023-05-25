@@ -55,6 +55,20 @@
             @enderror
         </div>
 
+        <div class="mb-3">
+            <label for="tecnology" class="form-label">Tecnologia</label>
+
+            @foreach ($tecnologies as $tecnology)
+                <input type="checkbox" id="tecnology" name="tag[]" value="{{ $tecnology->id }}">
+            @endforeach
+
+            @error('tecnology')
+                <div class="invalid-feedback">
+                    {{ $message }}
+                </div>
+            @enderror
+        </div>
+
         <button type="submit" class="btn btn-primary">Salva</button>
     </form>
 @endsection
