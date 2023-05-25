@@ -37,6 +37,7 @@ class ProjectController extends Controller
     {
         $types = Type::all();
         $tecnologies = Tecnology::all();
+
         return view('admin.projects.create', compact('types', 'tecnologies'));
     }
 
@@ -48,11 +49,15 @@ class ProjectController extends Controller
      */
     public function store(StoreProjectRequest $request)
     {
+
+
         $validated_data = $request->validated();
 
         $validated_data['slug'] = Str::slug($request->title, '-');
 
         $newProject = Project::create($validated_data);
+
+        $newProject->tecnologies()->attach($request->tecnologies);
 
         return redirect()->route('admin.projects.show', ['project' => $newProject->slug]);
     }

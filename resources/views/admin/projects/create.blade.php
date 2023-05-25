@@ -56,10 +56,11 @@
         </div>
 
         <div class="mb-3">
-            <label for="tecnology" class="form-label">Tecnologia</label>
+
 
             @foreach ($tecnologies as $tecnology)
-                <input type="checkbox" id="tecnology" name="tag[]" value="{{ $tecnology->id }}">
+                <input type="checkbox" id="tecnology_{{ $tecnology->id }}" name="tag[]" value="{{ $tecnology->id }}">
+                <label for="tecnology_{{ $tecnology->id }}" class="form-label">{{ $tecnology->name }}</label>
             @endforeach
 
             @error('tecnology')
