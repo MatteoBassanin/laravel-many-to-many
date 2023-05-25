@@ -57,7 +57,10 @@ class ProjectController extends Controller
 
         $newProject = Project::create($validated_data);
 
-        $newProject->tecnologies()->attach($request->tecnologies);
+
+        if ($request->has('tecnologies')) {
+            $newProject->tecnologies()->attach($request->tecnologies);
+        }
 
         return redirect()->route('admin.projects.show', ['project' => $newProject->slug]);
     }
