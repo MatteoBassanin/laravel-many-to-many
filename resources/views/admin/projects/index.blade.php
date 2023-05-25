@@ -15,6 +15,7 @@
                 <th scope="col">Titolo</th>
                 <th scope="col">Tipo</th>
                 <th scope="col">Slug</th>
+                <th scope="col">Tecnologie</th>
                 <th scope="col">Azioni</th>
             </tr>
         </thead>
@@ -25,6 +26,12 @@
                     <td>{{ $project->title }}</td>
                     <td>{{ $project->type ? $project->type->name : 'Nessun tipo' }}</td>
                     <td>{{ $project->slug }}</td>
+                    <td>
+                        @foreach ($project->tecnologies as $tecnology)
+                            {{ $tecnology->name }}
+                        @endforeach
+
+                    </td>
                     <td>
                         <a class="btn btn-primary"href="{{ route('admin.projects.show', ['project' => $project->slug]) }}">
                             Mostra
