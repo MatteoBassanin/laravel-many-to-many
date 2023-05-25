@@ -60,7 +60,7 @@
 
             @foreach ($tecnologies as $tecnology)
                 <input type="checkbox" id="tecnology_{{ $tecnology->id }}" name="tecnologies[]"
-                    value="{{ $tecnology->id }}">
+                    value="{{ $tecnology->id }}" @if (in_array($tecnology->id, old('tecnologies', []))) checked @endif>
                 <label for="tecnology_{{ $tecnology->id }}" class="form-label">{{ $tecnology->name }}</label>
             @endforeach
 

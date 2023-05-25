@@ -56,6 +56,25 @@
             @enderror
         </div>
 
-        <button type="submit" class="btn btn-primary">Salva</button>
+        @foreach ($tecnologies as $tecnology)
+            @if ($errors->any())
+                <input type="checkbox" id="tecnology_{{ $tecnology->id }}" name="tecnologies[]"
+                    value="{{ $tecnology->id }}" @if (in_array($tecnology->id, old('tecnologies', []))) checked @endif>
+            @else
+                <input type="checkbox" id="tecnology_{{ $tecnology->id }}" name="tecnologies[]"
+                    value="{{ $tecnology->id }}" @if ($project->tecnologies->contains($tecnology->id)) checked @endif>
+            @endif
+            <label for="tecnology_{{ $tecnology->id }}" class="form-label">{{ $tecnology->name }}</label>
+        @endforeach
+
+        @error('tecnology')
+            <div class="invalid-feedback">
+                {{ $message }}
+            </div>
+        @enderror
+        <div class="ms_container">
+
+            <button type="submit" class="btn btn-primary">Salva</button>
+        </div>
     </form>
 @endsection

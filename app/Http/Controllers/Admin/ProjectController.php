@@ -85,7 +85,8 @@ class ProjectController extends Controller
     public function edit(Project $project)
     {
         $types = Type::all();
-        return view('admin.projects.edit', compact('project', 'types'));
+        $tecnologies = Tecnology::all();
+        return view('admin.projects.edit', compact('project', 'types', 'tecnologies'));
     }
 
     /**
@@ -103,6 +104,8 @@ class ProjectController extends Controller
         $validated_data['slug'] = Str::slug($request->title, '-');
 
         $project->update($validated_data);
+
+        $project->tecnologies()->sync($request->tecnologies);
 
         return redirect()->route('admin.projects.show', ['project' => $project->slug]);
 
